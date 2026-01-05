@@ -61,6 +61,48 @@ Zevion Labs pioneers the shift from cloud-dependent services to device-native in
 4. **Open your browser**
    Navigate to [http://localhost:3000](http://localhost:3000)
 
+## 📝 Content Management (Blog)
+
+This project uses **Decap CMS** (formerly Netlify CMS) for managing blog posts. This allows you to create and edit content using a visual editor directly from your browser.
+
+### Managing Content Locally
+
+1. **Start the local CMS proxy:**
+   In a separate terminal window, run:
+   ```bash
+   npm run cms
+   ```
+
+2. **Access the Admin Panel:**
+   Open your browser and navigate to:
+   ```
+   http://localhost:3000/admin
+   ```
+   
+   *Note: When running locally with the proxy, you can edit files directly without logging in.*
+
+3. **Create/Edit Posts:**
+   - Use the **New Blog** button to create a post.
+   - Use the **External Paper Link** field to link directly to published papers instead of hosting content.
+   - Click **Publish** to save your changes. This will automatically generate/update the `.mdx` files in the `content/` directory.
+
+### Deployment Configuration
+
+For production (e.g., Vercel + GitHub), you need to update `public/admin/config.yml`:
+
+1. Change the backend configuration:
+   ```yaml
+   backend:
+     name: github
+     repo: your-username/zevion-labs-website
+     branch: main
+   ```
+2. Disable the local backend:
+   ```yaml
+   local_backend: false
+   ```
+3. Set up an OAuth provider on GitHub and connect it to your hosting service (Netlify/Vercel) to enable user login.
+
 ## 📁 Project Structure
 
 ```

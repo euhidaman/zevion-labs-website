@@ -8,7 +8,7 @@ export interface SectionHeadingProps {
   /**
    * The badge text displayed above the heading
    */
-  badge: string;
+  badge?: string;
   /**
    * The main heading text
    */
@@ -122,24 +122,26 @@ const SectionHeading = forwardRef<HTMLDivElement, SectionHeadingProps>(
         {...props}
       >
         {/* Badge */}
-        <div
-          className={cn(
-            "bg-tag-bg w-fit rounded-3xl",
-            variant.badge,
-            align === "center" && "md:mx-auto",
-            badgeClassName
-          )}
-          role="banner"
-        >
-          <p className="text-tag align-middle font-medium">
-            {Icon && (
-              <span className="mt-1.5 mr-2 inline-block self-center">
-                <Icon height={12} width={12} aria-hidden="true" />
-              </span>
+        {badge && (
+          <div
+            className={cn(
+              "bg-tag-bg w-fit rounded-3xl",
+              variant.badge,
+              align === "center" && "md:mx-auto",
+              badgeClassName
             )}
-            {badge}
-          </p>
-        </div>
+            role="banner"
+          >
+            <p className="text-tag align-middle font-medium">
+              {Icon && (
+                <span className="mt-1.5 mr-2 inline-block self-center">
+                  <Icon height={12} width={12} aria-hidden="true" />
+                </span>
+              )}
+              {badge}
+            </p>
+          </div>
+        )}
 
         {/* Heading */}
         <Component

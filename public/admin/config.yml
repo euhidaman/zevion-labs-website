@@ -1,0 +1,36 @@
+# ------------------------------------------------------------------------------
+# BACKEND CONFIGURATION
+# ------------------------------------------------------------------------------
+
+# OPTION 1: Local Development (Default)
+# Use this when running `npm run cms` locally.
+backend:
+  name: git-gateway
+local_backend: true
+
+# OPTION 2: Production (Netlify/Vercel)
+# Uncomment the lines below and COMMENT OUT Option 1 when deploying.
+# backend:
+#   name: git-gateway
+#   branch: main # Branch to update (e.g. main, master)
+
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "blog"
+    label: "Blog"
+    folder: "content"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Published At", name: "publishedAt", widget: "datetime"}
+      - {label: "Summary", name: "summary", widget: "text"}
+      - {label: "Published By", name: "publishedBy", widget: "string", default: "Zevion Labs Team"}
+      - {label: "Author Image URL", name: "autherImageURL", widget: "image", required: false}
+      - {label: "Tags", name: "tag", widget: "list", default: ["AI"]}
+      - {label: "Cover Image", name: "image", widget: "image", required: false}
+      - {label: "External Paper Link", name: "externalLink", widget: "string", required: false, hint: "Optional: Link to a published paper instead of full content"}
+      - {label: "Body", name: "body", widget: "markdown"}

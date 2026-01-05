@@ -75,9 +75,9 @@ const ProcessCards: React.FC = () => {
       start: "top 5%",
       endTrigger: slidesRef.current[slidesRef.current.length - 1],
       end: "bottom center",
-      pin: headingRef.current,
+      // Pinning disabled based on user feedback to remove "weird" look
+      // pin: headingRef.current, 
       pinSpacing: false,
-      anticipatePin: 1,
     });
 
     slides.forEach((slide, index) => {
@@ -118,41 +118,19 @@ const ProcessCards: React.FC = () => {
       }
     });
 
-    // Add responsive behavior
-    const updatePinning = () => {
-      const isMobile = window.innerWidth < 768;
-      const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
-
-      if (isMobile) {
-        // Disable header pinning on mobile for better UX
-        headerPin.disable();
-      } else if (isTablet) {
-        // Reduce pinning intensity on tablet
-        headerPin.enable();
-      } else {
-        // Full pinning on desktop
-        headerPin.enable();
-      }
-    };
-
-    if (headingRef.current) {
-      gsap.effects.fadeUpOnScroll(headingRef.current, {
-        start: "top 80%",
-        duration: 0.8,
-        markers: false,
-      });
-    }
-
-    // Initial call
-    updatePinning();
+    // Initial call - simplified since pinning is disabled
+    // updatePinning(); 
 
     // Update on window resize
-    window.addEventListener("resize", updatePinning);
+    // window.addEventListener("resize", updatePinning);
+
+    // Update on window resize
+    // window.addEventListener("resize", updatePinning);
 
     // Cleanup function
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-      window.removeEventListener("resize", updatePinning);
+      // window.removeEventListener("resize", updatePinning);
     };
   }, []);
 
@@ -166,7 +144,6 @@ const ProcessCards: React.FC = () => {
     <div ref={sectionRef} className="relative space-y-4 px-4 sm:px-6 lg:px-8">
       <SectionHeading
         ref={headingRef}
-        badge="Strategic Roadmap"
         heading="Milestones to Impact"
         description="Our phased approach to building the infrastructure for embedded intelligence, from core R&D to global scale."
         size="md"
