@@ -33,6 +33,11 @@ function Navbar() {
       description: "Learn more about our company",
     },
     {
+      name: "Milestones",
+      href: "/milestones",
+      description: "Track our technical and strategic roadmap",
+    },
+    {
       name: "Blog",
       href: "/blog",
       description: "Read our latest AI insights and research",
@@ -248,13 +253,13 @@ function Navbar() {
             <div className="flex items-center gap-3">
               <ThemeToggle />
 
-              <Button
+              {/* <Button
                 size={"sm"}
                 className="text-sm"
                 aria-label="Contact us to start working together"
               >
                 Work with us
-              </Button>
+              </Button> */}
             </div>
 
             {/* Mobile Menu Button */}
@@ -329,13 +334,13 @@ function Navbar() {
                       <ThemeToggle />
                     </div>
 
-                    <Button
+                    {/* <Button
                       className="w-full"
                       aria-label="Contact us to start working together"
                       onClick={closeMenu}
                     >
                       Work with us
-                    </Button>
+                    </Button> */}
                   </div>
                 </div>
               </div>

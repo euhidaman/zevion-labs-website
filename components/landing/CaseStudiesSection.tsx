@@ -1,6 +1,7 @@
 "use client";
 
 import ImageCarousel from "@/components/custom/ImageCarousel";
+import { PrivacyEfficiencyChart, LatencyReductionChart, RoboticsAutonomyChart } from "@/components/custom/MarketAnalysisCharts";
 import { SectionHeading } from "@/components/custom/SectionHeading";
 import { Button } from "@/components/ui/button";
 import type { CaseStudyType } from "@/data/caseStudies";
@@ -119,14 +120,23 @@ const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ caseStudy, index }) => {
         aria-label={`${caseStudy.name} visual`}
       >
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-        {IconComponent ? (
+        {index === 0 && (
+          <div className="w-full h-full p-6 md:p-10 relative z-10">
+            <PrivacyEfficiencyChart />
+          </div>
+        )}
+        {index === 1 && (
+          <div className="w-full h-full p-6 md:p-10 relative z-10">
+            <LatencyReductionChart />
+          </div>
+        )}
+        {index === 2 && (
+          <div className="w-full h-full p-6 md:p-10 relative z-10">
+            <RoboticsAutonomyChart />
+          </div>
+        )}
+        {index > 2 && IconComponent && (
           <IconComponent strokeWidth={0.5} className="w-48 h-48 text-primary/20" />
-        ) : (
-          <ImageCarousel
-            images={caseStudy.demo_images}
-            caseStudyId={index}
-            caseStudyName={caseStudy.name}
-          />
         )}
       </div>
     </section>

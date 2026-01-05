@@ -1,6 +1,7 @@
 "use client";
 
 import { SectionHeading } from "@/components/custom/SectionHeading";
+import { OptimizationPipelineChart, HardwareExpansionChart, FleetScaleChart } from "@/components/custom/MarketAnalysisCharts";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
@@ -72,62 +73,49 @@ const ProcessCards: React.FC = () => {
     const headerPin = ScrollTrigger.create({
       trigger: sectionRef.current,
       start: "top 5%",
-      endTrigger: slidesRef.current[slidesRef.current.length - 2],
-      end: "center top",
+      endTrigger: slidesRef.current[slidesRef.current.length - 1],
+      end: "bottom center",
       pin: headingRef.current,
       pinSpacing: false,
       anticipatePin: 1,
     });
 
-    slides.slice(0, 3).forEach((slide) => {
+    slides.forEach((slide, index) => {
       if (!slide) return;
+
+      const isLastSlide = index === slides.length - 1;
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: slide,
-          start: "top 25%",
-          end: "bottom top",
-          scrub: 1,
-          pin: true,
+          start: isLastSlide ? "top 80%" : "top 12%",
+          end: isLastSlide ? "bottom 20%" : "+=100%",
+          scrub: 1.2,
+          pin: !isLastSlide,
           pinSpacing: false,
           anticipatePin: 1,
         },
       });
 
-      // Responsive animation values
-      const getAnimationValues = () => {
-        const isMobile = window.innerWidth < 768;
-        const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
-
-        if (isMobile) {
-          return {
-            scale: 0.8,
-            z: -50,
-            rotationX: 8,
-            opacity: 0,
-          };
-        } else if (isTablet) {
-          return {
-            scale: 0.7,
-            z: -75,
-            rotationX: 12,
-            opacity: 0,
-          };
-        } else {
-          return {
-            scale: 0.6,
-            z: -100,
-            rotationX: 15,
-            opacity: 0,
-          };
-        }
-      };
-
-      tl.to(slide, {
-        ...getAnimationValues(),
-        duration: 0.7,
-        ease: "power2.inOut",
-      });
+      // Simple, elegant transition
+      if (!isLastSlide) {
+        tl.to(slide, {
+          y: -30,
+          scale: 0.98,
+          filter: "blur(4px)",
+          opacity: 0,
+          duration: 1,
+          ease: "none",
+        });
+      } else {
+        // Last slide entrance only
+        tl.from(slide, {
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          ease: "power2.out",
+        });
+      }
     });
 
     // Add responsive behavior
@@ -229,11 +217,21 @@ const ProcessCards: React.FC = () => {
                   {/* Background element */}
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,theme(colors.primary.DEFAULT/.05)_0%,transparent_70%)]" />
 
-                  {/* Icon Visual */}
-                  <slide.icon
-                    strokeWidth={1}
-                    className="w-32 h-32 md:w-48 md:h-48 text-primary/80 drop-shadow-2xl"
-                  />
+                  {index === 0 && (
+                    <div className="w-full h-full p-6 md:p-10 relative z-10">
+                      <OptimizationPipelineChart />
+                    </div>
+                  )}
+                  {index === 1 && (
+                    <div className="w-full h-full p-6 md:p-10 relative z-10">
+                      <HardwareExpansionChart />
+                    </div>
+                  )}
+                  {index === 2 && (
+                    <div className="w-full h-full p-6 md:p-10 relative z-10">
+                      <FleetScaleChart />
+                    </div>
+                  )}
 
                   {/* Number Overlay */}
                   <div className="absolute right-4 bottom-4 opacity-10">

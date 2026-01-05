@@ -6,6 +6,18 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { useRef } from "react";
+import {
+  GlobalMarketGrowthChart,
+  RegionalMarketChart,
+  EdgeROICalculatorChart,
+  PrivacyEfficiencyChart,
+  LatencyReductionChart,
+  RoboticsAutonomyChart,
+  OptimizationPipelineChart,
+  HardwareExpansionChart,
+  FleetScaleChart
+} from "@/components/custom/MarketAnalysisCharts";
+import { Cpu, Zap, Globe, TrendingUp } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -97,68 +109,104 @@ const AboutPage = () => {
                     Our mission is to decouple AI from the cloud, enabling any device—from the smallest sensor to the largest industrial robot—to think, learn, and act independently. We are building the critical infrastructure that allows high-performance AI to run reliably in the physical world, where privacy, latency, and reliability matter most.
                   </p>
                 </header>
-                <figure ref={(el) => { imageGroupRefs.current[0] = el as HTMLDivElement; }} className="flex flex-col items-center justify-center gap-6 md:flex-row" role="group" aria-label="Zevion Labs engineers working on embedded systems">
-                  <img
-                    src="https://res.cloudinary.com/dieth2xb3/image/upload/v1755799085/ssimage_bxr8i6.png"
-                    alt="Engineers testing embedded AI chips in a lab environment"
-                    className="aspect-[0.7] w-full rounded-lg object-cover md:w-1/2"
-                    loading="eager"
-                    decoding="sync"
-                    width="400"
-                    height="571"
-                  />
-                  <div className="flex w-full flex-col items-center justify-center gap-6 md:w-1/2">
-                    <img
-                      src="https://res.cloudinary.com/dieth2xb3/image/upload/v1755804235/aaaimage_zbypst.png"
-                      alt="Close up of a neural network visualization on a screen"
-                      className="aspect-[1.1] rounded-lg object-cover"
-                      loading="lazy"
-                      decoding="async"
-                      width="300"
-                      height="273"
-                    />
-                    <img
-                      src="https://res.cloudinary.com/dieth2xb3/image/upload/v1755804376/fasimage_skodum.png"
-                      alt="Prototype hardware for edge computing"
-                      className="aspect-[0.7] rounded-lg object-cover"
-                      loading="lazy"
-                      decoding="async"
-                      width="300"
-                      height="429"
-                    />
+                <figure ref={(el) => { imageGroupRefs.current[0] = el as HTMLDivElement; }} className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full" role="group" aria-label="Zevion Labs technical performance benchmarks">
+                  {/* Privacy Radar - Leading Visual */}
+                  <div className="md:col-span-2 aspect-[16/10] rounded-3xl bg-gradient-to-br from-primary/5 to-primary/10 border border-primary/10 p-8 sm:p-10 relative overflow-hidden group">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,theme(colors.primary.DEFAULT/.05)_0%,transparent_70%)]" />
+                    <div className="relative z-10 w-full h-full flex flex-col">
+                      <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-6">Efficiency & Privacy Benchmark</p>
+                      <PrivacyEfficiencyChart />
+                    </div>
+                  </div>
+
+                  {/* Strategic ROI */}
+                  <div className="aspect-square rounded-3xl bg-gradient-to-br from-primary/5 to-primary/10 border border-primary/10 p-6 relative overflow-hidden group">
+                    <div className="relative z-10 w-full h-full flex flex-col">
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-primary mb-4 text-center">Infrastructure ROI</p>
+                      <div className="flex-1 min-h-0">
+                        <EdgeROICalculatorChart />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Technical Metrics Card */}
+                  <div className="aspect-square rounded-3xl bg-gradient-to-br from-primary/5 via-primary/3 to-transparent border border-primary/10 p-8 relative overflow-hidden group">
+                    {/* Background Icon */}
+                    <div className="absolute -right-8 -bottom-8 opacity-[0.03] dark:opacity-[0.05]">
+                      <Cpu className="w-40 h-40 text-primary rotate-12" strokeWidth={1} />
+                    </div>
+
+                    {/* Content */}
+                    <div className="relative z-10 h-full flex flex-col justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-primary/10 dark:bg-primary/20 flex items-center justify-center">
+                          <Cpu className="w-5 h-5 text-primary" strokeWidth={2} />
+                        </div>
+                        <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Performance</p>
+                      </div>
+
+                      <div className="space-y-4">
+                        <div>
+                          <p className="text-4xl font-black tracking-tight text-foreground mb-1">90%</p>
+                          <p className="text-xs text-muted-foreground">Energy Efficiency</p>
+                        </div>
+                        <div>
+                          <p className="text-4xl font-black tracking-tight text-foreground mb-1">86%</p>
+                          <p className="text-xs text-muted-foreground">Cost Reduction</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </figure>
               </div>
               <div className="flex w-full flex-col items-center justify-center gap-12 pt-12 lg:w-1/2 lg:pt-48">
-                <figure ref={(el) => { imageGroupRefs.current[1] = el as HTMLDivElement; }} className="flex flex-col items-center justify-center gap-6 md:flex-row" role="group" aria-label="Conceptual visualizations of a smart, connected future">
-                  <img
-                    src="https://res.cloudinary.com/dieth2xb3/image/upload/v1755799085/ssimage_bxr8i6.png"
-                    alt="Visualization of a smart city network"
-                    className="aspect-[0.9] w-full rounded-lg object-cover md:w-1/2"
-                    loading="lazy"
-                    decoding="async"
-                    width="400"
-                    height="444"
-                  />
-                  <div className="flex w-full flex-col items-center justify-center gap-6 md:w-1/2">
-                    <img
-                      src="https://res.cloudinary.com/dieth2xb3/image/upload/v1755804235/aaaimage_zbypst.png"
-                      alt="Data moving between devices"
-                      className="aspect-[0.8] rounded-lg object-cover"
-                      loading="lazy"
-                      decoding="async"
-                      width="300"
-                      height="375"
-                    />
-                    <img
-                      src="https://res.cloudinary.com/dieth2xb3/image/upload/v1755804376/fasimage_skodum.png"
-                      alt="Embedded systems prototype"
-                      className="aspect-[0.9] rounded-lg object-cover"
-                      loading="lazy"
-                      decoding="async"
-                      width="300"
-                      height="333"
-                    />
+                <figure ref={(el) => { imageGroupRefs.current[1] = el as HTMLDivElement; }} className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full" role="group" aria-label="Conceptual visualizations of a smart, connected future">
+                  {/* Global Market Growth - Leading Visual */}
+                  <div className="md:col-span-2 aspect-[16/10] rounded-3xl bg-gradient-to-br from-primary/5 to-primary/10 border border-primary/10 p-8 sm:p-10 relative overflow-hidden group">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,theme(colors.primary.DEFAULT/.05)_0%,transparent_70%)]" />
+                    <div className="relative z-10 w-full h-full flex flex-col">
+                      <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-6">Global Market Trajectory ($170B+)</p>
+                      <GlobalMarketGrowthChart />
+                    </div>
+                  </div>
+
+                  {/* Regional Leadership */}
+                  <div className="aspect-square rounded-3xl bg-gradient-to-br from-primary/5 to-primary/10 border border-primary/10 p-6 relative overflow-hidden group">
+                    <div className="relative z-10 w-full h-full flex flex-col">
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-primary mb-4 text-center">Market Distribution</p>
+                      <div className="flex-1 min-h-0">
+                        <RegionalMarketChart />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Market Growth Card */}
+                  <div className="aspect-square rounded-3xl bg-gradient-to-br from-primary/5 via-primary/3 to-transparent border border-primary/10 p-8 relative overflow-hidden group">
+                    {/* Background Icon */}
+                    <div className="absolute -right-8 -bottom-8 opacity-[0.03] dark:opacity-[0.05]">
+                      <TrendingUp className="w-40 h-40 text-primary rotate-12" strokeWidth={1} />
+                    </div>
+
+                    {/* Content */}
+                    <div className="relative z-10 h-full flex flex-col justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-primary/10 dark:bg-primary/20 flex items-center justify-center">
+                          <TrendingUp className="w-5 h-5 text-primary" strokeWidth={2} />
+                        </div>
+                        <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Market Scale</p>
+                      </div>
+
+                      <div className="space-y-4">
+                        <div>
+                          <p className="text-4xl font-black tracking-tight text-foreground mb-1">7.9B</p>
+                          <p className="text-xs text-muted-foreground">IoT Devices by 2025</p>
+                        </div>
+                        <div>
+                          <p className="text-4xl font-black tracking-tight text-foreground mb-1">36%</p>
+                          <p className="text-xs text-muted-foreground">Annual Growth Rate</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </figure>
                 <article ref={workplaceContentRef} className="px-8">
@@ -176,35 +224,43 @@ const AboutPage = () => {
               </div>
             </div>
 
-            {/* <section ref={statsSectionRef} className="container flex flex-col gap-16 mt-24" aria-labelledby="stats-heading">
+            <section ref={statsSectionRef} className="container flex flex-col gap-16 mt-24" aria-labelledby="stats-heading">
               <header>
                 <h2 id="stats-heading" className="max-w-3xl text-4xl font-medium md:text-5xl">
-                  We excel in our field, but skill isn't everything we offer.
+                  Market Impact & Opportunity Potential
                 </h2>
+                <p className="text-muted-foreground mt-4 max-w-2xl">
+                  The edge AI market has reached a critical inflection point. As infrastructure pioneers, we are positioning Zevion Labs at the heart of this transformation.
+                </p>
               </header>
-              <div ref={statsGridRef} className="grid grid-cols-2 gap-6 md:grid-cols-3" role="region" aria-label="Company statistics and achievements">
-                <div className="flex flex-col gap-6 border-b pb-8" role="article" aria-labelledby="stat-1">
-                  <p id="stat-1" className="text-4xl font-medium md:text-5xl" aria-label="21 million">21M</p>
-                  <p className="text-muted-foreground">Global Reach of Users</p>
+              <div ref={statsGridRef} className="grid grid-cols-2 gap-6 md:grid-cols-3" role="region" aria-label="Industry statistics and market context">
+                <div className="flex flex-col gap-6 border-b pb-8" role="article">
+                  <p className="text-4xl font-medium md:text-5xl">$170.5B</p>
+                  <p className="text-muted-foreground text-sm uppercase tracking-wider">Edge AI Market by 2035</p>
+                  <p className="text-xs text-primary/70">21.2% CAGR Projection</p>
                 </div>
-                <div className="flex flex-col gap-6 border-b pb-8" role="article" aria-labelledby="stat-2">
-                  <p id="stat-2" className="text-4xl font-medium md:text-5xl" aria-label="8 plus years">8+</p>
-                  <p className="text-muted-foreground">Years of Expertise</p>
+                <div className="flex flex-col gap-6 border-b pb-8" role="article">
+                  <p className="text-4xl font-medium md:text-5xl">90%</p>
+                  <p className="text-muted-foreground text-sm uppercase tracking-wider">Energy Savings vs Cloud</p>
+                  <p className="text-xs text-primary/70">Per-Query Efficiency</p>
                 </div>
-                <div className="flex flex-col gap-6 border-b pb-8" role="article" aria-labelledby="stat-3">
-                  <p id="stat-3" className="text-4xl font-medium md:text-5xl" aria-label="54 projects">54</p>
-                  <p className="text-muted-foreground">Projects Completed</p>
+                <div className="flex flex-col gap-6 border-b pb-8" role="article">
+                  <p className="text-4xl font-medium md:text-5xl">86%</p>
+                  <p className="text-muted-foreground text-sm uppercase tracking-wider">Deployment Cost Reduction</p>
+                  <p className="text-xs text-primary/70">Validated Industry Case Study</p>
                 </div>
-                <div className="flex flex-col gap-6 border-b pb-8" role="article" aria-labelledby="stat-4">
-                  <p id="stat-4" className="text-4xl font-medium md:text-5xl" aria-label="113 thousand plus">113k+</p>
-                  <p className="text-muted-foreground">Monthly Active Users</p>
+                <div className="flex flex-col gap-6 border-b pb-8" role="article">
+                  <p className="text-4xl font-medium md:text-5xl">7.9B</p>
+                  <p className="text-muted-foreground text-sm uppercase tracking-wider">IoT Devices by 2028</p>
+                  <p className="text-xs text-primary/70">Requiring Local Intelligence</p>
                 </div>
-                <div className="flex flex-col gap-6 border-b pb-8" role="article" aria-labelledby="stat-5">
-                  <p id="stat-5" className="text-4xl font-medium md:text-5xl" aria-label="461 thousand">461k</p>
-                  <p className="text-muted-foreground">Registered Accounts</p>
+                <div className="flex flex-col gap-6 border-b pb-8" role="article">
+                  <p className="text-4xl font-medium md:text-5xl">750M+</p>
+                  <p className="text-muted-foreground text-sm uppercase tracking-wider">AI Chips Shipped Annually</p>
+                  <p className="text-xs text-primary/70">36% Year-over-Year Growth</p>
                 </div>
               </div>
-            </section> */}
+            </section>
           </div>
         </section>
       </main>

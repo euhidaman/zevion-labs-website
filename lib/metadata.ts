@@ -172,6 +172,31 @@ export const pageMetadata = {
       canonical: "https://zevionlabs.com/blog",
     },
   },
+  milestones: {
+    title: "Strategic Roadmap & Milestones - Zevion Labs",
+    description: "Explore the development phases of Zevion Labs. From core model optimization to global fleet scale, track our mission to build the future of embedded AI.",
+    keywords: [
+      "AI roadmap",
+      "technology milestones",
+      "edge AI development",
+      "hardware scaling",
+      "AI deployment phases",
+      "Zevion Labs future"
+    ],
+    openGraph: {
+      title: "Strategic Roadmap & Milestones - Zevion Labs",
+      description: "Explore the development phases of Zevion Labs. From core model optimization to global fleet scale, track our mission to build the future of embedded AI.",
+      url: "https://zevionlabs.com/milestones",
+      type: "website",
+    },
+    twitter: {
+      title: "Strategic Roadmap & Milestones - Zevion Labs",
+      description: "Explore the development phases of Zevion Labs. From core model optimization to global fleet scale, track our mission to build the future of embedded AI.",
+    },
+    alternates: {
+      canonical: "https://zevionlabs.com/milestones",
+    },
+  },
 };
 
 export function generatePageMetadata(

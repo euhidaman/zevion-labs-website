@@ -1,5 +1,6 @@
 import Footer from "@/components/custom/Footer";
 import Navbar from "@/components/custom/Navbar";
+import { ScrollToTop } from "@/components/custom/ScrollToTop";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import "@/lib/GSAPAnimations";
 import { defaultMetadata } from "@/lib/metadata";
@@ -28,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} suppressHydrationWarning>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
@@ -39,6 +40,7 @@ export default function RootLayout({
             <Navbar />
             {children}
             <Footer />
+            <ScrollToTop />
           </div>
         </ThemeProvider>
       </body>
