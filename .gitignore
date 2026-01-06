@@ -1,7 +1,7 @@
 # dependencies
 /node_modules
 /.pnp
-/.pnp.js
+.pnp.js
 
 # testing
 /coverage
@@ -36,3 +36,19 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Firebase
+firebase-debug.log
+firebase-debug.*.log
+.firebase/
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS generated files
+Thumbs.db
+ehthumbs.db

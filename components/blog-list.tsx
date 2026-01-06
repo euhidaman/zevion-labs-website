@@ -41,9 +41,10 @@ export default function BlogList({ posts }: { posts: BlogPost[] }) {
             ? posts.filter((post) => !post.metadata.isTopPick)
             : posts.filter((post) => {
                 if (post.metadata.isTopPick) return false;
-                const tags = Array.isArray(post.metadata.tag)
-                    ? post.metadata.tag
-                    : [post.metadata.tag];
+                const rawTags = post.metadata.tag;
+                if (!rawTags) return false;
+                const tags = Array.isArray(rawTags) ? rawTags : [rawTags];
+                // @ts-ignore - Handle potential type mismatch from gray-matter
                 return tags.includes(selectedTag);
             });
 
