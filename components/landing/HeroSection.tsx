@@ -83,21 +83,22 @@ function HomePage() {
           aria-label="Call to action buttons"
           className="mt-8 flex flex-col gap-3 md:flex-row md:items-center md:justify-center"
         >
-          <Button
+          {/* <Button
             aria-describedby="founder-cta-description"
             type="button"
-            className="cursor-pointer"
+            className="cursor-pointer h-9 px-4 text-sm md:h-10 md:px-8 md:text-base"
           >
             Explore Technology
           </Button>
           <Button
             aria-describedby="case-studies-cta-description"
             type="button"
-            className="cursor-pointer"
+            className="cursor-pointer h-9 px-4 text-sm md:h-10 md:px-8 md:text-base"
             variant={"outline"}
           >
             View Segments
-          </Button>
+          </Button> */}
+          <div className="h-9 w-full md:h-10"></div>
         </div>
 
         {/* <div className="relative" role="region" aria-label="Our trusted clients">

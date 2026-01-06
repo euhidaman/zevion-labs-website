@@ -98,15 +98,7 @@ const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ caseStudy, index }) => {
           </div>
         </div>
 
-        <Button
-          variant="outline"
-          className="w-full transition-all duration-200 hover:shadow-md focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:w-auto"
-          aria-describedby={`case-study-${index}-description`}
-          type="button"
-        >
-          Explore Segment
-          <span className="sr-only"> for {caseStudy.name}</span>
-        </Button>
+
 
         <p id={`case-study-${index}-description`} className="sr-only">
           Learn more about {caseStudy.name} solutions.

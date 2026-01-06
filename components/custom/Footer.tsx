@@ -3,12 +3,26 @@
 import { Marquee } from "@/components/magicui/marquee";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
-import { useRef } from "react";
+import { useTheme } from "next-themes";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 function Footer() {
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const marqueeRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Default to night image (which is now for light mode) or handle with mounted check
+  const imageSrc = !mounted
+    ? "/images/footer-day.png" // Default (SSR)
+    : resolvedTheme === "dark"
+      ? "/images/footer-day.png"
+      : "/images/footer-night.png";
 
   const resourceLinks = [
     { name: "Blogs", href: "blog" },
@@ -26,13 +40,13 @@ function Footer() {
       <div
         className="relative w-full bg-transparent"
         role="img"
-        aria-label="Books landscape background decorative banner"
+        aria-label="Landscape background decorative banner"
       >
         <img
           ref={imageRef}
-          className="h-[36vh] w-full object-cover sm:h-[48vh] md:h-[64vh] lg:h-[70vh]"
-          src="https://pbs.twimg.com/media/GxtkGthWsAAPR6-?format=jpg&name=4096x4096"
-          alt="Books landscape background"
+          className="h-[36vh] w-full object-cover sm:h-[48vh] md:h-[64vh] lg:h-[70vh] transition-opacity duration-500"
+          src={imageSrc}
+          alt="Landscape background"
         />
         <h5
           ref={marqueeRef}

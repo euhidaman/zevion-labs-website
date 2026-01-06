@@ -208,7 +208,7 @@ export default function BlogList({ posts }: { posts: BlogPost[] }) {
                                 id="research-blogs-heading"
                                 className="text-h2 text-text-heading font-semibold mb-6"
                             >
-                                Research/Blogs
+                                Research Papers
                             </h2>
 
                             {/* Filter Tags */}

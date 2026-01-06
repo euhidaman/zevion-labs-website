@@ -38,9 +38,9 @@ function Navbar() {
       description: "Track our technical and strategic roadmap",
     },
     {
-      name: "Blog",
+      name: "Research",
       href: "/blog",
-      description: "Read our latest AI insights and research",
+      description: "Read our latest AI research and insights",
     }
   ];
 
@@ -329,10 +329,7 @@ function Navbar() {
                     })}
                   </ul>
                   <div className="border-t pt-4 space-y-3">
-                    <div className="flex items-center justify-between px-3 py-2">
-                      <span className="text-base font-medium text-foreground/70">Theme</span>
-                      <ThemeToggle />
-                    </div>
+
 
                     {/* <Button
                       className="w-full"

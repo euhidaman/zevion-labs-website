@@ -18,7 +18,7 @@ export const siteConfig = {
   ],
   authors: [
     {
-      name: "Zevion Labs Team",
+      name: "Euhid Aman",
       url: "https://zevionlabs.com",
     },
   ],
