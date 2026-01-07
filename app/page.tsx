@@ -1,6 +1,7 @@
 import CaseStudiesSection from "@/components/landing/CaseStudiesSection";
 import ContactSection from "@/components/landing/ContactSection";
 import HeroSection from "@/components/landing/HeroSection";
+import ProductVideoSection from "@/components/landing/ProductVideoSection";
 // import TestimonialSection from "@/components/landing/TestimonialSection";
 import { generatePageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
@@ -12,6 +13,7 @@ export default function Home() {
     <main id="main-content" role="main">
       <div className="mx-auto max-w-6xl">
         <HeroSection />
+        <ProductVideoSection />
         <CaseStudiesSection />
         {/* <TestimonialSection /> */}
         <ContactSection />

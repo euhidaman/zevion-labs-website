@@ -68,8 +68,8 @@ function HomePage() {
       >
         <SectionHeading
           badge="Embedded Intelligence Infrastructure"
-          heading="Making AI a Native Capability of Hardware"
-          description="Zevion Labs pioneers the shift from cloud-dependent services to device-native intelligence. We treat AI as firmware-level infrastructure, delivering offline-first, privacy-preserving intelligence for the next generation of hardware."
+          heading="Making GenAI a Native Capability of Hardware"
+          description="We build AI that runs directly on your device - no internet required. Your data stays private, your devices work faster, and everything runs smoothly, even offline."
           icon={Sparkles}
           size="lg"
           align="center"
@@ -79,27 +79,7 @@ function HomePage() {
           showDescriptionToScreenReaders={true}
         />
 
-        <div
-          aria-label="Call to action buttons"
-          className="mt-8 flex flex-col gap-3 md:flex-row md:items-center md:justify-center"
-        >
-          {/* <Button
-            aria-describedby="founder-cta-description"
-            type="button"
-            className="cursor-pointer h-9 px-4 text-sm md:h-10 md:px-8 md:text-base"
-          >
-            Explore Technology
-          </Button>
-          <Button
-            aria-describedby="case-studies-cta-description"
-            type="button"
-            className="cursor-pointer h-9 px-4 text-sm md:h-10 md:px-8 md:text-base"
-            variant={"outline"}
-          >
-            View Segments
-          </Button> */}
-          <div className="h-9 w-full md:h-10"></div>
-        </div>
+        {/* CTA buttons removed - empty space minimized */}
 
         {/* <div className="relative" role="region" aria-label="Our trusted clients">
           <h2 className="!sr-only">Companies We've Helped Transform</h2>

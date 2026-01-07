@@ -64,7 +64,7 @@ const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ caseStudy, index }) => {
     >
       <div ref={contentRef} className="col-span-1 space-y-6 lg:col-span-5">
         <div className="space-y-6">
-          <div className="flex items-center">
+          <div className="flex items-center justify-center lg:justify-start">
             {/* Logo or minimalist identifier */}
             <div className="flex items-center gap-2">
               {IconComponent && <IconComponent className="h-6 w-6 text-primary" />}
@@ -72,20 +72,20 @@ const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ caseStudy, index }) => {
             </div>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-3 text-center lg:text-left">
             <h3
               id={`case-study-${index}-title`}
-              className="text-h4 text-heading pr-4 text-2xl leading-tight font-semibold lg:text-3xl"
+              className="text-h4 text-heading px-4 lg:px-0 lg:pr-4 text-2xl leading-tight font-semibold lg:text-3xl"
             >
               {caseStudy.project_title}
             </h3>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-4 text-center lg:text-left">
             <h4 className="sr-only">Key Features</h4>
-            <p className="text-muted-foreground">{caseStudy.description}</p>
+            <p className="text-muted-foreground px-2 lg:px-0">{caseStudy.description}</p>
             <ul
-              className="list-disc space-y-3 pl-4"
+              className="list-disc space-y-3 pl-4 text-left inline-block lg:block"
               role="list"
               aria-label="Project features and achievements"
             >

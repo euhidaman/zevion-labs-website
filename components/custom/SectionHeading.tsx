@@ -127,7 +127,7 @@ const SectionHeading = forwardRef<HTMLDivElement, SectionHeadingProps>(
             className={cn(
               "bg-tag-bg w-fit rounded-3xl",
               variant.badge,
-              align === "center" && "md:mx-auto",
+              align === "center" && "mx-auto",
               badgeClassName
             )}
             role="banner"
