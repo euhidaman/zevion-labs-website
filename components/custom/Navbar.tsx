@@ -3,19 +3,28 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, ChevronDown } from "lucide-react";
 import { ThemeToggle } from "../ThemeToggle";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "../ui/button";
 import Image from "next/image";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "../ui/navigation-menu";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
+  const [isProductsOpen, setIsProductsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const navRef = useRef<HTMLElement>(null);
@@ -220,35 +229,76 @@ function Navbar() {
               </Link>
             </div>
 
-            <ul
-              className="hidden items-center space-x-6 lg:flex"
-              role="menubar"
-              aria-label="Main navigation menu"
-            >
-              {navLinks.map((link, index) => {
-                const isActive =
-                  pathname === link.href || (link.href.startsWith("/#") && pathname === "/");
+            <NavigationMenu className="hidden lg:flex">
+              <NavigationMenuList className="gap-6">
+                {navLinks.slice(0, 1).map((link, index) => {
+                  const isActive = pathname === link.href || (link.href.startsWith("/#") && pathname === "/");
+                  return (
+                    <NavigationMenuItem key={link.name}>
+                      <NavigationMenuLink
+                        asChild
+                        active={isActive}
+                      >
+                        <Link
+                          href={link.href}
+                          className={`text-text-heading hover:text-foreground focus:ring-ring rounded-md px-3 py-1.5 !text-sm font-semibold transition-colors focus:ring-0 focus:outline-none ${isActive ? "text-foreground font-bold" : "text-foreground/70"
+                            }`}
+                        >
+                          {link.name}
+                        </Link>
+                      </NavigationMenuLink>
+                    </NavigationMenuItem>
+                  );
+                })}
 
-                return (
-                  <li key={link.name} role="none">
-                    <Link
-                      href={link.href}
-                      className={`text-text-heading hover:text-foreground focus:ring-ring rounded-md px-2 py-1 !text-sm font-medium transition-colors focus:ring-0 focus:outline-none ${isActive ? "text-foreground font-normal" : "text-foreground/70"
-                        }`}
-                      role="menuitem"
-                      aria-describedby={`nav-description-${index}`}
-                      onFocus={() => setActiveIndex(index)}
-                      onBlur={() => setActiveIndex(-1)}
-                    >
-                      {link.name}
-                      <span id={`nav-description-${index}`} className="sr-only">
-                        {link.description}
-                      </span>
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
+                {/* Products Dropdown */}
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="text-text-heading hover:text-foreground focus:ring-ring rounded-md px-3 py-1.5 !text-sm font-semibold transition-colors focus:ring-0 focus:outline-none text-foreground/70 data-[state=open]:text-foreground">
+                    Products
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <div className="grid w-[450px] gap-1 p-2">
+                      <NavigationMenuLink asChild>
+                        <Link href="/products/emberos" className="flex flex-col gap-1.5 p-5 rounded-2xl hover:bg-accent/50 transition-all group">
+                          <div className="text-base font-black leading-none group-hover:text-primary transition-colors">EmberOS</div>
+                          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug font-medium">
+                            AI-Native OS Layer with always-on intelligence for your device
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                      <NavigationMenuLink asChild>
+                        <Link href="/products/embervlm" className="flex flex-col gap-1.5 p-5 rounded-2xl hover:bg-accent/50 transition-all group">
+                          <div className="text-base font-black leading-none group-hover:text-primary transition-colors">EmberVLM</div>
+                          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug font-medium">
+                            Vision-Language Model with progressive multimodal learning pipeline
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+
+                {navLinks.slice(1).map((link, index) => {
+                  const isActive = pathname === link.href || (link.href.startsWith("/#") && pathname === "/");
+                  return (
+                    <NavigationMenuItem key={link.name}>
+                      <NavigationMenuLink
+                        asChild
+                        active={isActive}
+                      >
+                        <Link
+                          href={link.href}
+                          className={`text-text-heading hover:text-foreground focus:ring-ring rounded-md px-3 py-1.5 !text-sm font-semibold transition-colors focus:ring-0 focus:outline-none ${isActive ? "text-foreground font-bold" : "text-foreground/70"
+                            }`}
+                        >
+                          {link.name}
+                        </Link>
+                      </NavigationMenuLink>
+                    </NavigationMenuItem>
+                  );
+                })}
+              </NavigationMenuList>
+            </NavigationMenu>
 
             <div className="flex items-center gap-3">
               <ThemeToggle />
@@ -301,7 +351,62 @@ function Navbar() {
               <div className="">
                 <div className="space-y-2 px-2 py-4">
                   <ul className="space-y-2" role="menu" aria-label="Mobile navigation options">
-                    {navLinks.map((link, index) => {
+                    {/* Home Link */}
+                    <li role="none">
+                      <Link
+                        href="/"
+                        className={`hover:bg-accent hover:text-accent-foreground block rounded-md px-3 py-2 text-base font-medium transition-colors focus:outline-none ${pathname === "/" ? "bg-accent text-accent-foreground" : "text-foreground/70"
+                          }`}
+                        onClick={closeMenu}
+                      >
+                        Home
+                      </Link>
+                    </li>
+
+                    {/* Products Dropdown */}
+                    <li role="none">
+                      <button
+                        onClick={() => setIsProductsOpen(!isProductsOpen)}
+                        className="hover:bg-accent hover:text-accent-foreground w-full flex items-center justify-between rounded-md px-3 py-2 text-base font-medium transition-colors focus:outline-none text-foreground/70"
+                      >
+                        Products
+                        <ChevronDown
+                          className={`h-4 w-4 transition-transform ${isProductsOpen ? "rotate-180" : ""
+                            }`}
+                        />
+                      </button>
+                      {isProductsOpen && (
+                        <ul className="ml-4 mt-2 space-y-2">
+                          <li>
+                            <Link
+                              href="/products/emberos"
+                              className={`hover:bg-accent hover:text-accent-foreground block rounded-md px-3 py-2 text-sm transition-colors focus:outline-none ${pathname === "/products/emberos"
+                                ? "bg-accent text-accent-foreground"
+                                : "text-foreground/70"
+                                }`}
+                              onClick={closeMenu}
+                            >
+                              EmberOS
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              href="/products/embervlm"
+                              className={`hover:bg-accent hover:text-accent-foreground block rounded-md px-3 py-2 text-sm transition-colors focus:outline-none ${pathname === "/products/embervlm"
+                                ? "bg-accent text-accent-foreground"
+                                : "text-foreground/70"
+                                }`}
+                              onClick={closeMenu}
+                            >
+                              EmberVLM
+                            </Link>
+                          </li>
+                        </ul>
+                      )}
+                    </li>
+
+                    {/* Other Links */}
+                    {navLinks.slice(1).map((link, index) => {
                       const isActive =
                         pathname === link.href || (link.href.startsWith("/#") && pathname === "/");
 
